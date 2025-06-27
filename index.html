@@ -3,135 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial de Instalação: Drupal no Debian 12</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Guia de Instalação: Drupal 12</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <h1>Instalação do Servidor Drupal no Debian 12</h1>
-        [cite_start]<p class="autores"><strong>Acadêmicos:</strong> Cauã Vitor, Thiago Duarte, Otávio Herdy [cite: 1]</p>
-        [cite_start]<p class="autores"><strong>Curso:</strong> Ciência da Computação - 5° Período [cite: 1]</p>
-    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fab fa-drupal logo"></i>
+                <h2>Guia Drupal</h2>
+            </div>
+            <nav class="main-nav">
+                <a href="#intro" class="nav-item active">Introdução</a>
+                <a href="#passo1" class="nav-item">Passo 1: Root</a>
+                <a href="#passo2" class="nav-item">Passo 2: Update</a>
+                <a href="#passo3" class="nav-item">Passo 3: Serviços</a>
+                <a href="#passo4" class="nav-item">Passo 4: PHP</a>
+                <a href="#passo5" class="nav-item">Passo 5: Segurança BD</a>
+                <a href="#passo6" class="nav-item">Passo 6: Criação BD</a>
+                <a href="#passo7" class="nav-item">Passo 7: Download</a>
+                <a href="#passo8" class="nav-item">Passo 8: Apache</a>
+                <a href="#passo9" class="nav-item">Passo 9: Composer</a>
+                <a href="#passo10" class="nav-item">Passo 10: Ativação</a>
+                <a href="#passo11" class="nav-item">Passo 11: UI Web</a>
+            </nav>
+            <footer class="sidebar-footer">
+                <p>Tutorial por Cauã, Thiago & Otávio.</p>
+            </footer>
+        </aside>
 
-    <nav>
-        <a href="#intro">O que é Drupal?</a>
-        <a href="#passos">Passo a Passo</a>
-        <a href="#final">Instalação Gráfica</a>
-    </nav>
+        <main class="content">
+            <header class="content-header">
+                <h1>Instalação do Drupal no Debian 12</h1>
+                <p>Um guia completo, passo a passo, para configurar seu ambiente de desenvolvimento Drupal.</p>
+            </header>
 
-    <main>
-        <section id="intro">
-            <h2>O que é o Drupal?</h2>
-            [cite_start]<p>O Drupal é um CMS (Content Management System), ou Sistema de Gerenciamento de Conteúdo, assim como o WordPress ou Joomla. [cite: 2]</p>
-            [cite_start]<p>Ele é feito em PHP, roda em servidores web (geralmente com Apache ou Nginx) e usa banco de dados (como MySQL ou PostgreSQL). [cite: 3]</p>
-            [cite_start]<p>Com o Drupal, é possível criar e gerenciar sites de forma modular, com foco em flexibilidade, segurança e escalabilidade. [cite: 4]</p>
-            [cite_start]<p>É usado em portais de universidades, governos, blogs, lojas virtuais, redes sociais internas, entre outros. [cite: 5]</p>
-        </section>
+            <section id="intro">
+                <h2>O que é o Drupal?</h2>
+                <p>O Drupal é um CMS (Content Management System), ou Sistema de Gerenciamento de Conteúdo, assim como o WordPress ou Joomla. Ele é feito em PHP, roda em servidores web (geralmente com Apache ou Nginx) e usa banco de dados (como MySQL ou PostgreSQL).</p>
+                <p>Com o Drupal, é possível criar e gerenciar sites de forma modular, com foco em flexibilidade, segurança e escalabilidade. É usado em portais de universidades, governos, blogs, lojas virtuais, redes sociais internas, entre outros.</p>
+            </section>
 
-        <section id="passos">
-            [cite_start]<h2>Tutorial de Instalação [cite: 6]</h2>
-
-            <div class="step">
-                <h3>Passo 1: Acessar o terminal como superusuário (root)</h3>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>su -</code></pre>
+            <div class="step" id="passo1">
+                <h3 class="step-title"><span>1</span>Acessar o terminal como superusuário (root)</h3>
+                <div class="code-wrapper">
+                    <pre>su -</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
             </div>
 
-            <div class="step">
-                <h3>Passo 2: Atualizar o repositório e os pacotes</h3>
-                <p>Atualiza a lista de pacotes disponíveis:</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>sudo apt update</code></pre>
+            <div class="step" id="passo2">
+                <h3 class="step-title"><span>2</span>Atualizar o repositório e pacotes</h3>
+                <p class="step-comment"># Atualiza a lista de pacotes disponíveis</p>
+                <div class="code-wrapper">
+                    <pre>sudo apt update</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
-                <p>Atualiza todos os pacotes instalados:</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>sudo apt upgrade -y</code></pre>
-                </div>
-            </div>
-
-            <div class="step">
-                <h3>Passo 3: Instalar Apache, MariaDB e curl</h3>
-                [cite_start]<p>Instala o servidor web, o banco de dados (MariaDB é um substituto do MySQL [cite: 7][cite_start]) e a ferramenta de transferência de dados[cite: 7].</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>sudo apt-get install apache2 mariadb-server mariadb-client curl</code></pre>
+                <p class="step-comment"># Atualiza todos os pacotes instalados automaticamente</p>
+                <div class="code-wrapper">
+                    <pre>sudo apt upgrade -y</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
             </div>
 
-            <div class="step">
-                <h3>Passo 4: Instalar PHP e extensões</h3>
-                [cite_start]<p>Adiciona o repositório de PHP mantido por sury.org [cite: 8] e instala o PHP 8.3 com as extensões necessárias para o Drupal.</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>sudo apt install -y lsb-release ca-certificates apt-transport-https software-properties-common gnupg2
-sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
-sudo apt update
-sudo apt install -y php8.3
-sudo apt install -y php8.3-cli php8.3-common php8.3-mysql php8.3-xml php8.3-mbstring php8.3-curl php8.3-zip php8.3-gd</code></pre>
+            <div class="step" id="passo3">
+                <h3 class="step-title"><span>3</span>Instalar Apache, MariaDB e curl</h3>
+                <p class="step-comment"># Instala servidor web, banco de dados e a ferramenta curl</p>
+                <div class="code-wrapper">
+                    <pre>sudo apt-get install apache2 mariadb-server mariadb-client curl</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
-                <p>Verifique a versão do PHP:</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>php -v</code></pre>
+            </div>
+            
+            <div class="step" id="passo4">
+                <h3 class="step-title"><span>4</span>Instalar PHP e extensões</h3>
+                <p class="step-comment"># Instala pacotes para adicionar repositórios de terceiros</p>
+                 <div class="code-wrapper">
+                    <pre>sudo apt install -y lsb-release ca-certificates apt-transport-https software-properties-common gnupg2</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <p class="step-comment"># Adiciona o repositório de PHP mantido por sury.org</p>
+                <div class="code-wrapper">
+                    <pre>sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <p class="step-comment"># Atualiza e instala o PHP 8.3</p>
+                <div class="code-wrapper">
+                    <pre>sudo apt update
+sudo apt install -y php8.3</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <p class="step-comment"># Instala extensões PHP necessárias para o Drupal</p>
+                <div class="code-wrapper">
+                    <pre>sudo apt install -y php8.3-cli php8.3-common php8.3-mysql php8.3-xml php8.3-mbstring php8.3-curl php8.3-zip php8.3-gd</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <p class="step-comment"># Verifica a versão do PHP</p>
+                <div class="code-wrapper">
+                    <pre>php -v</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
             </div>
 
-            <div class="step">
-                <h3>Passo 5: Configurar o MariaDB (MySQL)</h3>
-                <p>Execute o script de configuração de segurança e siga as instruções (definir senha root, remover usuários anônimos, etc.).</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>mysql_secure_installation</code></pre>
+            <div class="step" id="passo5">
+                <h3 class="step-title"><span>5</span>Configurar a segurança do MariaDB</h3>
+                <p class="step-comment"># Executa o script de configuração de segurança</p>
+                <div class="code-wrapper">
+                    <pre>mysql_secure_installation</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <p class="step-comment">Siga os prompts: defina a senha do root, remova usuários anônimos, desabilite o login remoto do root e remova o banco de dados de teste.</p>
+            </div>
+
+            <div class="step" id="passo6">
+                <h3 class="step-title"><span>6</span>Criar banco de dados e usuário</h3>
+                <p class="step-comment"># Acessa o MariaDB como root</p>
+                <div class="code-wrapper">
+                    <pre>mysql -u root -p</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <p class="step-comment"># Cria o banco, o usuário e concede permissões</p>
+                <div class="code-wrapper">
+                    <pre>CREATE DATABASE drupal DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+GRANT ALL ON drupal.* TO 'drupal_rw'@'localhost' IDENTIFIED BY '123456';
+FLUSH PRIVILEGES;
+EXIT;</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
             </div>
 
-            <div class="step">
-                [cite_start]<h3>Passo 6: Criar banco de dados e usuário para o Drupal [cite: 9]</h3>
-                <p>Acesse o MariaDB e execute os comandos SQL para criar a base de dados e o usuário.</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>mysql -u root -p</code></pre>
+            <div class="step" id="passo7">
+                <h3 class="step-title"><span>7</span>Baixar e instalar o Drupal</h3>
+                <p class="step-comment"># Baixa e extrai a última versão do Drupal</p>
+                <div class="code-wrapper">
+                    <pre>wget https://www.drupal.org/download-latest/tar.gz -O drupal.tar.gz
+tar xvf drupal.tar.gz</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>CREATE DATABASE drupal DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-[cite_start]GRANT ALL ON drupal.* TO 'drupal_rw'@'localhost' IDENTIFIED BY '123456'; [cite: 10]
-[cite_start]FLUSH PRIVILEGES; [cite: 11]
-EXIT;</code></pre>
-                </div>
-            </div>
-
-            <div class="step">
-                [cite_start]<h3>Passo 7: Baixar e instalar o Drupal [cite: 12]</h3>
-                <p>Baixe, extraia e mova os arquivos do Drupal para o diretório do servidor web.</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>wget https://www.drupal.org/download-latest/tar.gz -O drupal.tar.gz
-tar xvf drupal.tar.gz
-mv drupal-*/ /var/www/html/drupal</code></pre>
+                <p class="step-comment"># Move o conteúdo para o diretório do Apache</p>
+                <div class="code-wrapper">
+                    <pre>mv drupal-*/ /var/www/html/drupal</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
             </div>
 
-            <div class="step">
-                <h3>Passo 8: Configurar o Apache</h3>
-                <p>Crie um arquivo de configuração VirtualHost para o site Drupal.</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>sudo vi /etc/apache2/sites-available/drupal.conf</code></pre>
+            <div class="step" id="passo8">
+                <h3 class="step-title"><span>8</span>Configurar o Apache</h3>
+                <p class="step-comment"># Cria um novo arquivo de configuração para o site</p>
+                <div class="code-wrapper">
+                    <pre>sudo vi /etc/apache2/sites-available/drupal.conf</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
-                [cite_start]<p>Cole o seguinte conteúdo, que inclui regras de reescrita para que as URLs do Drupal funcionem corretamente. [cite: 13, 14]</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>&lt;VirtualHost *:80&gt;
+                <p class="step-comment"># Cole o conteúdo do VirtualHost abaixo no arquivo</p>
+                 <div class="code-wrapper">
+                    <pre>&lt;VirtualHost *:80&gt;
     ServerName drupal.localhost
     DocumentRoot /var/www/html/drupal/
-
     &lt;Directory /var/www/html/drupal/&gt;
         Options Indexes FollowSymLinks
         AllowOverride All
@@ -142,74 +175,89 @@ mv drupal-*/ /var/www/html/drupal</code></pre>
         RewriteCond %{REQUEST_FILENAME} !-d
         RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
     &lt;/Directory&gt;
-&lt;/VirtualHost&gt;</code></pre>
+&lt;/VirtualHost&gt;</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
-                <p>Ajuste as permissões da pasta.</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>chown -R www-data:www-data /var/www/html/
-chmod -R 755 /var/www/html/</code></pre>
+                <p class="step-comment"># Edita a configuração principal do Apache</p>
+                 <div class="code-wrapper">
+                    <pre>sudo vim /etc/apache2/apache2.conf</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <p class="step-comment"># Ajusta as permissões da pasta do Drupal</p>
+                <div class="code-wrapper">
+                    <pre>chown -R www-data:www-data /var/www/html/
+chmod -R 755 /var/www/html/</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
             </div>
 
-            <div class="step">
-                <h3>Passo 9: Instalar o Composer</h3>
-                [cite_start]<p>Instale as dependências [cite: 15] e o Composer, o gerenciador de dependências do PHP.</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>sudo apt install php-cli unzip curl -y
-curl -sS https://getcomposer.org/installer -o composer-setup.php
+            <div class="step" id="passo9">
+                <h3 class="step-title"><span>9</span>Instalar o Composer</h3>
+                <p class="step-comment"># Instala dependências para o Composer</p>
+                <div class="code-wrapper">
+                    <pre>sudo apt install php-cli unzip curl -y</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <p class="step-comment"># Baixa e instala o Composer globalmente</p>
+                <div class="code-wrapper">
+                    <pre>curl -sS https://getcomposer.org/installer -o composer-setup.php
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-rm composer-setup.php</code></pre>
+rm composer-setup.php</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
-                <p>Gere os arquivos de autoload dentro do diretório do Drupal.</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>cd /var/www/html/drupal
-composer dump-autoload</code></pre>
+                <p class="step-comment"># Gera arquivos de autoload para o Drupal</p>
+                <div class="code-wrapper">
+                    <pre>cd /var/www/html/drupal
+composer dump-autoload</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                 <p class="step-comment"># Atualiza os repositórios novamente</p>
+                <div class="code-wrapper">
+                    <pre>sudo apt update</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
             </div>
 
-            <div class="step">
-                <h3>Passo 10: Ativar módulos e reiniciar Apache</h3>
-                [cite_start]<p>Ative os módulos necessários do Apache, especialmente o `rewrite`[cite: 16], ative o site e reinicie o serviço.</p>
-                <div class="code-container">
-                    <button class="copy-btn">Copiar</button>
-                    <pre><code>a2dismod mpm_event
+            <div class="step" id="passo10">
+                <h3 class="step-title"><span>10</span>Ativar Módulos e Reiniciar Apache</h3>
+                <p class="step-comment"># Verifica a sintaxe da configuração do Apache</p>
+                <div class="code-wrapper">
+                    <pre>apachectl -t</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <p class="step-comment"># Ativa módulos, o site e reinicia o Apache</p>
+                <div class="code-wrapper">
+                    <pre>a2dismod mpm_event
 a2enmod mpm_prefork
 a2enmod php8.3
 a2enmod rewrite
 a2ensite drupal.conf
-systemctl restart apache2</code></pre>
+systemctl restart apache2</pre>
+                    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                 </div>
             </div>
-        </section>
 
-        <section id="final">
-            <h2>Passo 11: Abrir o site no navegador e finalizar</h2>
-            <p>Acesse <a href="http://drupal.localhost/drupal" target="_blank">http://drupal.localhost/drupal</a> para iniciar a instalação gráfica.</p>
-            <ul>
-                <li><strong>1. Idioma:</strong> Escolha a linguagem de sua preferência.</li>
-                <li><strong>2. [cite_start]Perfil:</strong> Selecione "Standard" como perfil de instalação. [cite: 17]</li>
-                <li><strong>3. [cite_start]Banco de Dados:</strong> Use os seguintes dados para a configuração: [cite: 18]
-                    <ul>
-                        <li>Nome da database: <code>drupal</code></li>
-                        <li>Nome de usuário da database: <code>drupal_rw</code></li>
-                        <li>Senha da database: <code>123456</code></li>
-                    </ul>
-                </li>
-                <li><strong>4. [cite_start]Configurar Site:</strong> Preencha as informações do seu site, como nome, e-mail e dados da conta de administrador. [cite: 19]</li>
-            </ul>
-            <div class="success-message">
-                [cite_start]<p>Pronto, seu servidor Drupal está instalado! [cite: 20]</p>
+            <div class="step" id="passo11">
+                <h3 class="step-title"><span>11</span>Instalação via Navegador</h3>
+                <p class="step-comment">Acesse o endereço abaixo no seu navegador para iniciar a instalação gráfica do Drupal.</p>
+                <div class="code-wrapper">
+                    <pre>http://drupal.localhost/drupal</pre>
+                     <a href="http://drupal.localhost/drupal" class="copy-button" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <ul class="instruction-list">
+                    <li><i class="fa-solid fa-language"></i> Escolha a linguagem de sua preferência.</li>
+                    <li><i class="fa-solid fa-list-check"></i> Selecione “Standard” como perfil de instalação.</li>
+                    <li><i class="fa-solid fa-database"></i> Na configuração do banco de dados, use os dados: `drupal`, `drupal_rw`, `123456`.</li>
+                    <li><i class="fa-solid fa-sliders"></i> Configure as informações do seu site e da conta de administrador.</li>
+                </ul>
+                <div class="final-message">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <p>Pronto! Seu servidor Drupal está instalado e pronto para uso.</p>
+                </div>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Tutorial criado com base no documento "Servidor Drupal no Debian 12". Todos os direitos reservados aos autores.</p>
-    </footer>
-
+        </main>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

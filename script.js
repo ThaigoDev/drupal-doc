@@ -1,28 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const copyButtons = document.querySelectorAll('.copy-btn');
 
+    const copyButtons = document.querySelectorAll('.copy-button');
     copyButtons.forEach(button => {
+        if (button.tagName.toLowerCase() === 'a') return;
+
         button.addEventListener('click', () => {
-            const codeContainer = button.parentElement;
-            const codeElement = codeContainer.querySelector('pre code');
-            const codeToCopy = codeElement.innerText;
+            const codeWrapper = button.parentElement;
+            const codeToCopy = codeWrapper.querySelector('pre').innerText;
 
             navigator.clipboard.writeText(codeToCopy).then(() => {
-                // Feedback visual para o usuário
-                button.innerText = 'Copiado!';
-                button.style.backgroundColor = '#28a745'; // Green color
+                const originalIcon = button.innerHTML;
+                button.innerHTML = '<i class="fa-solid fa-check"></i>';
+                button.style.backgroundColor = '#28a745'; // Green
 
                 setTimeout(() => {
-                    button.innerText = 'Copiar';
-                    button.style.backgroundColor = '#444';
+                    button.innerHTML = originalIcon;
+                    button.style.backgroundColor = '';
                 }, 2000);
             }).catch(err => {
-                console.error('Falha ao copiar texto: ', err);
-                button.innerText = 'Erro!';
-                 setTimeout(() => {
-                    button.innerText = 'Copiar';
-                }, 2000);
+                console.error('Falha ao copiar:', err);
             });
         });
+    });
+
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('section, .step');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navItems.forEach(link => {
+                    const href = link.getAttribute('href');
+                    link.classList.toggle('active', href === `#${entry.target.id}`);
+                });
+            }
+        });
+    }, { rootMargin: '-30% 0px -70% 0px' });
+
+    sections.forEach(section => {
+        observer.observe(section);
     });
 });
